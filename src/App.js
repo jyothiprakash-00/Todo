@@ -1,22 +1,19 @@
 import React, { useState } from "react";
 import moment from "moment";
-import { Button, Input, DatePicker, TimePicker, Modal } from "antd";
+import { Button, Input,  Modal } from "antd";
 import 'bootstrap/dist/css/bootstrap.css';
 import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [task, setTask] = useState("");
-  const [date, setDate] = useState(null);
-  const [time, setTime] = useState(null);
   const [isModalOpen, setisModalOpen] = useState(false);
   const [editingTodo, setEditingTodo] = useState(null);
 
   const showModal = (todo) => {
     setEditingTodo(todo);
     setTask(todo.task);
-    setDate(moment(todo.date));
-    setTime(moment(todo.time, "HH:mm"));
+    
     setisModalOpen(true);
   };
 
@@ -40,8 +37,6 @@ function App() {
         setTodos([...todos, newTodo]);
       }
       setTask("");
-      setDate(null);
-      setTime(null);
       setisModalOpen(false);
     } else {
       alert("Please fill in all fields.");
@@ -56,8 +51,7 @@ function App() {
     setisModalOpen(false);
     setEditingTodo(null);
     setTask("");
-    setDate(null);
-    setTime(null);
+    
   };
 
   return (
@@ -77,7 +71,7 @@ function App() {
       <ul class="list-group list-group-flush">
         {todos.map((todo)=>(
           <>
-            {/* <li key={todo.id} class="list-group-item"></li> */}
+           
             <li style={{backgroundColor:'black'}} class="list-group-item"><span id="spanid"><i class="bi bi-check-circle"></i></span>{todo.task}</li>
            
             <div className="d-flex">
